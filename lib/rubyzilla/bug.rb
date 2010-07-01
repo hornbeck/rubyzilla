@@ -20,7 +20,7 @@ module Rubyzilla
         result = Bugzilla.server.call("Bug.get_bugs", {:ids => [id]})
         
         @product_id   = result["bugs"][0]["internals"]["product_id"]
-        @product      = product
+        #@product      = product
         @id           = result["bugs"][0]["id"]
         @component_id = result["bugs"][0]["internals"]["component_id"]
         @summary      = result["bugs"][0]["summary"]
@@ -80,6 +80,10 @@ module Rubyzilla
       if Bugzilla.logged_in?
         Bugzilla.server.call("Bug.add_comment", {:id => id, :comment => comment}) 
       end
+    end
+
+    def comments
+        Bugzilla.server.call("Bug.comments", {:ids => [id]}) 
     end
   end
 end

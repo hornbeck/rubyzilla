@@ -2,6 +2,7 @@ module Rubyzilla
   class Product
     attr_accessor :id, :name
     
+    #docs for appropriate version: http://alpina.unige.ch/bugzilla/docs/en/html/api/index.html
     def initialize id
       product = Bugzilla.server.call("Product.get_products", {:ids => [id]})
       @id = id
